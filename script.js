@@ -76,11 +76,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 
 const displayMovements = function (movements) {
-  movements.forEach(function (mov, i){
-    const type = mov > 0 ? "deposit" : "withdrawl" ;
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawl';
 
-    const html = 
-    `
+    const html = `
     <div class="movements__row">
       <div class="movements__type movements__type--
       ${type}">
@@ -90,9 +89,56 @@ const displayMovements = function (movements) {
     </div>
     `;
 
-    containerMovements.insertAdjacentHTML
-    ('afterbegin', html);
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
 
 displayMovements(account1.movements);
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const reverseJulia = [...dogsJulia];
+  const newJuia = reverseJulia.slice(1, -1);
+
+  const juliaKate = [...newJuia, ...dogsKate];
+  let i = 0;
+  juliaKate.forEach(function (remaining) {
+    i++;
+    if (remaining > 3) {
+      console.log(`dog number ${i} and age ${remaining}`);
+    } else {
+      console.log(`dog number ${i} and age ${remaining}`);
+    }
+  });
+
+  console.log(newJuia);
+  console.log(juliaKate);
+};
+
+// const Juliadata = [3, 5, 2, 12, 7];
+// const Katedata = [4, 1, 15, 8, 3];
+
+// checkDogs(Juliadata, Katedata);
+
+// const eurToUSd = 1.1;
+// const movementUSD = movements.map(mov => mov * eurToUSd);
+
+// const user = 'Keramas Ioannis Georgios';
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(name => name[0]);
+
+// console.log(username);
+
+const createUsername = function (acc) {
+  acc.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsername(accounts);
+console.log(accounts);
