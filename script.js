@@ -71,7 +71,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -130,15 +130,22 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 // console.log(username);
 
-const createUsername = function (acc) {
-  acc.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(' ')
-      .map(name => name[0])
-      .join('');
-  });
-};
+// const createUsername = function (acc) {
+//   acc.forEach(function (acc) {
+//     acc.username = acc.owner
+//       .toLowerCase()
+//       .split(' ')
+//       .map(name => name[0])
+//       .join('');
+//   });
+// };
 
-createUsername(accounts);
-console.log(accounts);
+// createUsername(accounts);
+// console.log(accounts);
+
+const balance = movements.reduce(function(acc, cur,i ,arr){
+  console.log(`iteration ${i}:${acc}`);
+  return acc + cur;
+}, 0);
+
+console.log(balance);
