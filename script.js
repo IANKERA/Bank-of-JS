@@ -121,6 +121,25 @@ const calcDisplayBalance = function(movements){
  
 calcDisplayBalance(account1.movements);
 
+const calcDisplaySummary = function (movements){
+  const incomes = movements
+    .filter(mov=>mov >0)
+    .reduce((acc,mov) =>acc + mov,0 );
+    labelSumIn.textContent = `${incomes}`
+    
+    const outcome = movements
+    .filter(mov=>mov<0)
+    .reduce((acc,mov) =>acc + mov,0);
+    labelSumOut.textContent = `${outcome}`;
+
+};    
+
+calcDisplaySummary(account1.movements);
+
+
+
+
+
 const balance = movements.reduce(function(acc, cur,i ,arr){
   console.log(`iteration ${i}:${acc}`);
   return acc + cur;
