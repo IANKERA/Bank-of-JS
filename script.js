@@ -110,9 +110,27 @@ const checkDogs = function (dogsJulia, dogsKate) {
     }
   });
 
+
   console.log(newJuia);
   console.log(juliaKate);
 };
+
+const calcDisplayBalance = function(movements){
+  const balance = movements.reduce((acc,mov) => acc + mov,0 );
+  labelBalance.textContent = `${balance} EUR`;
+}
+ 
+calcDisplayBalance(account1.movements);
+
+const balance = movements.reduce(function(acc, cur,i ,arr){
+  console.log(`iteration ${i}:${acc}`);
+  return acc + cur;
+}, 0);
+
+console.log(balance);
+
+
+
 
 // const Juliadata = [3, 5, 2, 12, 7];
 // const Katedata = [4, 1, 15, 8, 3];
@@ -142,10 +160,3 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 // createUsername(accounts);
 // console.log(accounts);
-
-const balance = movements.reduce(function(acc, cur,i ,arr){
-  console.log(`iteration ${i}:${acc}`);
-  return acc + cur;
-}, 0);
-
-console.log(balance);
