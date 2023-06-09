@@ -181,7 +181,6 @@ btnLogin.addEventListener('click', function (e) {
     calcDisplaySummary(currentAccount);
   }
 });
-//dd
 
 //chall1
 // const calcAverageHumanAge = function (ages) {
