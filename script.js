@@ -92,28 +92,9 @@ const displayMovements = function (movements) {
   });
 };
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const reverseJulia = [...dogsJulia];
-  const newJuia = reverseJulia.slice(1, -1);
-
-  const juliaKate = [...newJuia, ...dogsKate];
-  let i = 0;
-  juliaKate.forEach(function (remaining) {
-    i++;
-    if (remaining > 3) {
-      console.log(`dog number ${i} and age ${remaining}`);
-    } else {
-      console.log(`dog number ${i} and age ${remaining}`);
-    }
-  });
-
-  console.log(newJuia);
-  console.log(juliaKate);
-};
-
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} EUR`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -156,6 +137,14 @@ const createUsername = function (acc) {
 
 createUsername(accounts);
 
+const updateUi = function (acc) {
+  displayMovements(acc.movements);
+
+  calcDisplayBalance(acc);
+
+  calcDisplaySummary(acc);
+};
+
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
@@ -175,7 +164,7 @@ btnLogin.addEventListener('click', function (e) {
 
     displayMovements(currentAccount.movements);
 
-    calcDisplayBalance(currentAccount.movements);
+    calcDisplayBalance(currentAccount);
 
     calcDisplaySummary(currentAccount);
   }
@@ -183,10 +172,28 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const transfer = Number(inputTransferAmount.value);
-  const reciever = accounts.find(acc => acc.username === inputTransferTo.value);
-  console.log(transfer, reciever);
+  const amount = Number(inputTransferAmount.value);
+  const recieverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, recieverAcc);
+
+  if (
+    amount > 0 &&
+    recieverAcc &&
+    currentAccount.balance >= amount &&
+    recieverAcc?.username !== currentAccount.username
+  ) {
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+
+    updateUi(currentAccount);
+  }
 });
+
+// btnClose.addEventListener('click', function (e) {
+//   e.preventDefault();
+// });
 
 //chall1
 // const calcAverageHumanAge = function (ages) {
@@ -217,3 +224,21 @@ btnTransfer.addEventListener('click', function (e) {
 // console.log(username);
 
 // console.log(accounts);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const reverseJulia = [...dogsJulia];
+//   const newJuia = reverseJulia.slice(1, -1);
+
+//   const juliaKate = [...newJuia, ...dogsKate];
+//   let i = 0;
+//   juliaKate.forEach(function (remaining) {
+//     i++;
+//     if (remaining > 3) {
+//       console.log(`dog number ${i} and age ${remaining}`);
+//     } else {
+//       console.log(`dog number ${i} and age ${remaining}`);
+//     }
+//   });
+
+//   console.log(newJuia);
+//   console.log(juliaKate);
+// };
