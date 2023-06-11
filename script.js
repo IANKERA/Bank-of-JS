@@ -219,6 +219,7 @@ btnLoan.addEventListener('click', function (e) {
     updateUi(currentAccount);
   }
 });
+//dd
 //chall1
 // const calcAverageHumanAge = function (ages) {
 //   const humanDogAge = ages
