@@ -314,3 +314,9 @@ dogs.forEach(add => (add.recomendedFood = Math.trunc(add.weight ** 0.75 * 28)));
 
 const sarahdog = dogs.find(dog => dog.owners.includes('Sarah'));
 console.log(sarahdog);
+console.log(sarahdog.curFood > sarahdog.recomendedFood ? 'eating much' : 'ok');
+
+const ownereat = dogs
+  .filter(dog => dog.curFood > dog.recomendedFood)
+  .flatMap(dog => dog.owners);
+console.log(ownereat);
